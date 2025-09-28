@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deepfake Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        input[type=file] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #00f2fe;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .REAL {
+            color: green;
+        }
+
+        .FAKE {
+            color: red;
+        }
+
+        /* Spinner */
+        #spinner {
+            display: none;
+            margin: 20px auto;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #4facfe;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deepfake Video Detector</h1>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <input type="file" name="video" id="videoInput" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        <div id="spinner"></div>
+
+        {% if prediction %}
+            <div class="result {{ prediction }}">
+                Prediction: {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const form = document.getElementById("uploadForm");
+        const spinner = document.getElementById("spinner");
+
+        form.addEventListener("submit", () => {
+            spinner.style.display = "block"; // Show spinner when submitting
+        });
+    </script>
+</body>
+</html>

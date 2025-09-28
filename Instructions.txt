@@ -1,0 +1,125 @@
+1️⃣ Requirements
+
+Python 3.9 or 3.10
+
+Windows 10 / 11 (or Linux / MacOS)
+
+Internet connection to download modules
+
+Visual Studio Build Tools (only if installing packages like dlib – optional here)
+
+2️⃣ Project Structure
+
+After setup, your folder should look like:
+
+deepfake_Web/
+├─ data/
+│  ├─ real/       # Put real videos here
+│  └─ fake/       # Put fake videos here
+├─ templates/
+│  └─ index.html  # HTML template for Flask
+├─ uploads/       # Flask uploads folder (auto-created)
+├─ deepfake_env/  # Python virtual environment
+├─ features.py    # Feature extraction
+├─ train.py       # Training script
+├─ app.py         # Flask web app
+└─ install_modules.py # Optional installer script
+
+3️⃣ Step 1: Create a virtual environment
+
+Open PowerShell and navigate to your project folder:
+
+cd C:\deepfake_Web
+
+
+Create a virtual environment:
+
+python -m venv deepfake_env
+
+
+Activate it:
+
+.\deepfake_env\Scripts\Activate.ps1
+
+
+After activation, you should see (deepfake_env) in the prompt.
+
+4️⃣ Step 2: Install required Python modules
+
+Option 1 – Manual install:
+
+pip install numpy==1.25.2
+pip install opencv-python==4.12.0.88
+pip install mediapipe==0.10.21
+pip install scikit-learn
+pip install flask
+pip install joblib
+pip install werkzeug
+
+
+Option 2 – Use install_modules.py script:
+
+python install_modules.py
+
+
+This automatically installs all necessary modules.
+
+5️⃣ Step 3: Prepare your dataset
+
+Create two folders:
+
+data/real
+data/fake
+
+
+Put real videos in data/real and fake videos in data/fake.
+
+Recommended: Use short videos (5–15 seconds) to make feature extraction faster.
+
+6️⃣ Step 4: Train the model
+
+Run:
+
+python train.py
+
+
+This extracts 11 features from all videos and trains a RandomForest model.
+
+After completion, deepfake_model.pkl is created in the project folder.
+
+Output example:
+
+[INFO] Extracting features from real videos...
+[INFO] Extracting features from fake videos...
+[INFO] Training RandomForest model...
+[INFO] Model saved as deepfake_model.pkl
+
+7️⃣ Step 5: Run the Flask web app
+python app.py
+
+
+Automatically opens your browser at http://127.0.0.1:5000/
+
+You will see the interactive webpage: upload a video and get REAL / FAKE prediction
+
+Colored results: green = REAL, red = FAKE
+
+A spinner shows while processing the video
+
+8️⃣ Step 6: Upload a video
+
+Click Choose File → select a video (MP4 recommended)
+
+Click Predict
+
+Wait a few seconds; the prediction will appear below the button
+
+9️⃣ Tips for beginners
+
+Use short videos for testing; long videos take longer to process.
+
+Always activate the environment before running scripts.
+
+If you add new videos, re-run train.py to retrain the model.
+
+Make sure your uploads/ folder exists; Flask saves uploaded videos there.
