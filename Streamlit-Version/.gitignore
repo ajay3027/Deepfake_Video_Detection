@@ -1,0 +1,74 @@
+# ===========================
+# Python / Deepfake Project
+# ===========================
+
+# Virtual environment
+venv/
+env/
+ENV/
+*.env
+*.venv
+
+# Python cache & logs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.bak
+
+# Model and dataset files (too large for Git)
+models/*.h5
+models/*.pth
+models/*.ckpt
+*.onnx
+
+# Data folders
+data/train/
+data/test/
+data/frames_train/
+data/frames_val/
+data/frames/
+data/raw/
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Output or temp files
+outputs/
+results/
+temp/
+tmp/
+*.csv
+*.json
+*.txt
+
+# IDE / Editor
+.vscode/
+.idea/
+*.code-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter & notebooks checkpoints
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Streamlit cache
+.streamlit/
+__MACOSX/
+
+# GitHub Actions temporary files
+.github/workflows/__pycache__/
+
+# Other
+*.zip
+*.tar
+*.gz
+*.pkl
+autopush.bat
